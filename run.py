@@ -267,9 +267,9 @@ thread_command_list = []
 config_yaml = yaml.safe_load(open('config.yaml'))
 config = Config(config_yaml['dirPath'], config_yaml['numberIO'], config_yaml['NBYTES'], config_yaml['memoryLimit'])
 
-part_counter_mutex = threading.Semaphore(1)
-file_counter_mutex = threading.Semaphore(1)
-read = threading.Semaphore(1)
+part_counter_mutex = threading.Lock()
+file_counter_mutex = threading.Lock()
+read = threading.Lock()
 memory_semaphore = threading.Semaphore(config.memoryLimit / config.NBYTES)
 
 file_counter = 0
