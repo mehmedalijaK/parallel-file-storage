@@ -148,7 +148,7 @@ def put_command(file_name):
             if not block:
                 break
 
-            parts = parts + 1
+            parts += 1
 
             fp = FilePart(part_counter, file_counter, parts, "UNFINISHED", "")
 
@@ -161,7 +161,7 @@ def put_command(file_name):
             result_async = pool.apply_async(write_process, args=(block, file_output))
             results.append((result_async, fp))
 
-            num = num + 1
+            num += 1
 
             part_counter_mutex.acquire()
             part_counter = part_counter + 1
@@ -182,7 +182,7 @@ def put_command(file_name):
     read.release()
 
     file_counter_mutex.acquire()
-    fileCounter = file_counter + 1
+    file_counter += 1
     file_counter_mutex.release()
 
 
